@@ -1,0 +1,49 @@
+    ---
+    Introduction
+    ---
+    Oleg Estekhin
+    ---
+    2010-08-25
+    ---
+
+Plotter
+
+    The two usual problems with the complex arithmetic implementation are:
+
+    * Representing complex number as a pair of real numbers instead of the separate real, imaginary and complex
+        representations.
+
+    * Using standard mathematical formulae for complex functions such as square root, logarithm and exponentiation instead
+        of the proper algorithms.
+
+    []
+
+    This application draws two plots that demonstrate the impact these issues can have on a program that uses complex
+    numbers.
+
+* Examples
+
+    Example plots contain three parts - original rays, transformed rays using the Complex Math library and transformed
+    rays using the Apache Commons Math library.
+
+** Borda's Mouthpiece
+
+    This is one of the most interesting examples because the problem manifests itself when the input value is nothing
+    special - the original ray is <<<0.0-yi>>> with <<<y \> 0.0>>>, but during the transformation of this ray there is a
+    point when an intermediate result has the negative zero as one of its components and subsequent calculations loose
+    that sign information which results in the transformed ray's jump.
+
+[mouthpiece.png] Borda's Mouthpiece
+
+** Flow past a Unit Disk
+
+    Less interesting, as this example directly depends on the <<<+0.0i>>> and <<<-0.0i>>> input values. There are two
+    original rays <<<x+0.0i>>> and <<<x-0.0i>>>, and the negative zero in the imaginary component of the second ray is
+    simply treated the same way as the positive zero.
+
+[unitdisk.png] Flow past a Unit Disk
+
+* Links
+
+    {{{http://www.cs.berkeley.edu/~wkahan/}Prof. William Kahan's personal page}} is the definite place to get started on
+    the difference between floating-point numbers (as in computers) and real numbers (as in mathematics).

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+    <id>source</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>/..</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>**/license.txt</include>
+                <include>**/pom.xml</include>
+                <include>**/src/**</include>
+            </includes>
+            <excludes>
+                <exclude>**/target/**</exclude>
+            </excludes>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+    </fileSets>
+</assembly>

@@ -1,0 +1,50 @@
+# encoding = UTF-8
+
+viewer@frame.title = EBML Viewer ${project.version}
+
+exit@action.name = Exit
+exit@action.description = Quit EBML Viewer
+exit@action.mnemonic = pressed X
+exit@action.accelerator = alt pressed F4
+
+open@action.name = Open...
+open@action.description = Open a file
+open@action.mnemonic = pressed O
+open@action.accelerator = ctrl pressed O
+
+closeActiveTab@action.name = Close
+closeActiveTab@action.description = Close the active tab
+closeActiveTab@action.mnemonic = pressed W
+closeActiveTab@action.accelerator = ctrl pressed W
+
+file@menu.name = File
+file@menu.mnemonic = pressed F
+
+recentlyUsedFiles@menu.name = Reopen
+recentlyUsedFiles@menu.mnemonic = pressed R
+
+clearRecentlyUsedFiles@action.name = Clear List
+clearRecentlyUsedFiles@action.description = Clear the list of recently used files
+clearRecentlyUsedFiles@action.mnemonic = pressed C
+
+
+fileChooser.fileNotFound.header = Some files were not found:\n\n
+fileChooser.fileNotFound.entry = %n%s
+
+fileChooser.filter.allSupported.description = All Supported Files
+fileChooser.filter.allSupported.extensions = mkv mk3d mka mks webm
+
+fileChooser.filter.matroska.description = Matroska Files (*.mkv, *.mk3d, *.mka, *.mks)
+fileChooser.filter.matroska.extensions = mkv mk3d mka mks
+
+fileChooser.filter.webm.description = WebM Files (*.webm)
+fileChooser.filter.webm.extensions = webm
+
+
+fileChooser.mkv.description = Matroska Media File
+fileChooser.mk3d.description = Matroska Stereoscopic (3D) Video File
+fileChooser.mka.description = Matroska Audio File
+fileChooser.mks.description = Matroska Subtitles File
+fileChooser.webm.description = WebM Media File
+
+masterTreeNode.loading = Loading...

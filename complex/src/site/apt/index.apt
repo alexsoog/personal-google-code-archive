@@ -1,0 +1,23 @@
+    ---
+    Introduction
+    ---
+    Oleg Estekhin
+    ---
+    2010-08-25
+    ---
+
+Complex Numbers for Java
+
+    The Complex Math library aims to provide a complex number type for Java with the correct and accurate implementation.
+
+* Modules
+
+*--+--+
+ Name | Description
+*--+--+
+ {{{./complex-math/index.html}Complex Math}} | Provides a complex number type that supports arithmetic operations and square root, exponential and logarithm functions.
+*--+--+
+ {{{./complex-plotter/index.html}Complex Plotter}} | Draws two plots that demonstrate usual problems with complex arithmetic implementation
+*--+--+
+ {{{./complex-research/index.html}Complex Research}} | Contains different implementations of some complex functions and utilities to compare them
+*--+--+

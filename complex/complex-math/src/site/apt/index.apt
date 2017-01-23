@@ -1,0 +1,72 @@
+    ---
+    Introduction
+    ---
+    Oleg Estekhin
+    ---
+    2010-08-25
+    ---
+
+Complex Math
+
+    This library provides a complex number type that supports arithmetic operations and square root, exponential and
+    logarithm functions.
+
+    The internal representation of complex numbers is based on a formal sum of real and imaginary parts, and the
+    implementation of arithmetic operations and functions is based on the correct numerical algorithms.
+
+* Components
+
+    Two main components of the library are the <<<Complex>>> and the <<<Expression>>> classes.
+
+** Complex
+
+    The <<<Complex>>> class represents a complex number with double-precision real and imaginary parts.
+
+    New <<<Complex>>> instances are obtained from the static factory methods.
+
++--
+Complex u = Complex.real( 1.23 );               // 1.23
+Complex v = Complex.imaginary( 2.34 );          // 2.34i
+Complex w = Complex.cartesian( 3.45, 4.56 );    // 3.45+4.56i
+Complex p = Complex.polar( 4.0, Math.PI/6.0 );  // approximately 3.46+2.0i
++--
+
+    The <<<Complex>>> class defines methods for arithmetic operations (addition, subtraction, multiplication and division),
+    conjugation, square root, logarithm and exponentiation.
+
++--
+Complex c = u.exp().subtract( v.log() );        // c = e^u - log(v)
+Complex d = u.divide( v.sqrt().add( w ));       // d = u / ( sqrt(v) + w )
++--
+
+    The <<<ComplexFormat>>> class handles parsing and formatting of complex numbers.
+
+** Expression
+
+    The <<<Expression>>> class represents an arithmetic expression with complex numbers and variables.
+
+    New <<<Expression>>> instances can be created either by parsing text with the expression representation (both infix
+    and postfix representations supported) or by using a builder interface based on the postfix notation.
+
+    The following example demonstrates how to build expressions that will represent the same formulae as in the
+    <<<Complex>>> class example above:
+
++--
+Expression ec = Expression.postfix().variable( "u" ).exp().variable( "v" ).log().subtract().create();
+Expression ed = Expression.postfix().variable( "u" ).variable( "v" ).sqrt().variable( "w" ).add().divide().create();
++--
+
+    Once created, an instance of this class can be used to recalculate the same expression with different variable
+    values.
+
++--
+CalculationContext context = new CalculationContext();
+context.setVariable( "u", Complex.real( 1.23 ) );
+context.setVariable( "v", Complex.imaginary( 2.34 ) );
+context.setVariable( "w", Complex.cartesian( 3.45, 4.56 ) );
+
+Complex c = ec.calculate( context );
+Complex d = ed.calculate( context );
++--
+
+    The <<<ExpressionFormat>>> class handles parsing and formatting of complex arithmetic expressions.

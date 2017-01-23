@@ -1,0 +1,26 @@
+    ---
+    Introduction
+    ---
+    Oleg Estekhin
+    ---
+    2010-08-25
+    ---
+
+Complex Algorithms Research
+
+    This module contains different implementations of some complex functions and utilities to compare them.
+
+    Test samples can be generally divided in the following three categories:
+
+    * Samples with special floating-point values, such as signed zeros, infinities and NaN.
+
+    * Samples whose components are random finite floating-point numbers. The <<<BigDecimal>>> arithmetic is usually used
+        to calculate the expected result against which other implementations are compared.
+
+    * Samples with exact values when there exists some identity which can be used to calculate exact result, for example,
+        <<<(3x)^2+(4x)^2\ =\ (5x)^2>>> for the <<<abs()>>> function or <<<sqrt(x^2)\ =\ x>>> for the <<<sqrt()>>> function.
+
+    []
+
+    In addition to comparing the ulp difference from the expected result, the utility also checks for overflow, underflow
+    and incorrect (NaN) results when the finite value was expected.

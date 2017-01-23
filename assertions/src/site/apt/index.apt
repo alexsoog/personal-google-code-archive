@@ -1,0 +1,100 @@
+    ---
+    Introduction
+    ---
+    Oleg Estekhin
+    ---
+    2010-10-15
+    ---
+
+Assertions Framework
+
+    This library provides an assertion framework that can be used in unit tests. The assertions interface is a mix
+    of nested and chained method call styles.
+
+    The special feature of this framework is the ability to check multiple conditions represented by predicates in a
+    single statement and multiple statements in a single assertion. Another notable feature is the attention to number-related predicates.
+
+    The assertion passes only if all statements contained in that assertion pass, and a statement passes only if all
+    predicates contained in that statement pass, but the assertion evaluation process does not stop after a single
+    predicate fails. The assertion will always check all contained statements and predicates and in the case of failures
+    the resulting message will contain information about all failed statements and predicates.
+
+* Usage
+
+    Assertions are created using the <<<assertThat>>> method of the {{{./apidocs/oe/assertions/Assertions.html}Assertions}}
+    class. This method will throw an <<<AssertionError>>> if the assertion fails.
+
+    The assertion consists of a set of statements, and each statement consists of an input value and a set of predicates.
+
+    {{{./predicates.html}This page}} contains a list of available predicates.
+    The preferred way to create a predicate is to use the appropriate factory method on the {{{./apidocs/oe/assertions/Predicates.html}Predicates}} class.
+
+* Examples
+
+** Single condition
+
+    The <<<assertThat>>> method accepts an input value and a predicate that represents a condition which the input value
+    should satisfy in order for assertion to pass.
+
++---
+import static oe.assertions.Assertions.assertThat;
+import static oe.assertions.Predicates.isEqualTo;
+
+public class SingleConditionTest {
+
+    public void testSingleCondition() {
+        assertThat( "input", isEqualTo( "target" ) );
+    }
+
+}
++---
+
+** Multiple conditions
+
+    The <<<assertThat>>> method is overloaded to accept any number of predicates which should all pass in order for assertion to pass.
+
++---
+import static oe.assertions.Assertions.assertThat;
+import static oe.assertions.Predicates.isEqualTo;
+import static oe.assertions.Predicates.isInstanceOf;
+
+public class MultipleConditionsTest {
+
+    public void testMultipleConditions() {
+        assertThat( "input", isEqualTo( "target" ), isInstanceOf( Number.class ) );
+    }
+
+}
++---
+
+** Multiple statements
+
+    The <<<assertThat>>> method is overloaded to accept any number of statements, but in that case each statement must
+    be explicitly created using the {{{./apidocs/oe/assertions/Statement.html}Statement}} class builder.
+    Each statement has its own input value and a set of predicates.
+
++---
+import static oe.assertions.Assertions.assertThat;
+import static oe.assertions.Predicates.isEqualTo;
+import static oe.assertions.Predicates.isInstanceOf;
+import static oe.assertions.Statement.value;
+
+public class MultipleStatementsExample {
+
+    public void testMultipleStatements() {
+        assertThat(
+                value( "input" ).satisfies( isEqualTo( "target" ) ),
+                value( "input" ).satisfiesAllOf(
+                        isEqualTo( "target" ),
+                        isInstanceOf( Number.class )
+                ),
+                value( "input" ).describedAs( "my input value" ).satisfiesAnyOf(
+                        isEqualTo( "target" ),
+                        isInstanceOf( Number.class )
+                )
+        );
+    }
+
+}
++---
+

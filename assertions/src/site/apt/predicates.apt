@@ -1,0 +1,206 @@
+    ---
+    Predicates
+    ---
+    Oleg Estekhin
+    ---
+    2010-10-15
+    ---
+
+Predicates
+
+    For convenience the {{{./apidocs/oe/assertions/Predicates.html}Predicates}} class provides static factory methods
+    that create new predicates. Alternatively each predicate can be directly created using the appropriate predicate class's constructor.
+
+* Composite predicates
+
+    Composite predicates provide a way to create a complex condition by combining individual conditions using AND and OR
+    operators.
+
+    * <<satisfiesAllOf( conditions... )>>
+
+        Checks if the input value satisfies all of the specified conditions (logical AND).
+
+    * <<satisfiesAnyOf( conditions... )>>
+
+        Checks if the input value satisfies any of the specified conditions (logical OR).
+
+    []
+
+* General purpose predicates
+
+    General purpose predicates work on objects of any type.
+
+    * <<isNull()>>
+
+        Checks if the input value is <<<null>>>.
+
+    * <<isNotNull()>>
+
+        Checks if the input value is not <<<null>>>.
+
+    * <<isInstanceOf( class )>>
+
+        Checks if the input value is an instance of the specified class.
+
+    * <<isEqualTo( target )>>
+
+        Checks if the input value is equal to the specified value.
+        Objects other then numbers and arrays are compared using <<<Object.equals( Object )>>> semantics.
+        Arrays are compared using the appropriate <<<Arrays.equals( T[] a1, T[] a2)>>> method.
+        Numbers are compared using {{{http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.21.1}numerical equality}} semantics.
+
+    * <<isNotEqualTo( target )>>
+
+        Checks if the input value is not equal to the specified value.
+
+    * <<isSameAs( target )>>
+
+        Checks if the input value is the same as the specified value.
+        Objects other then numbers are compared using {{{http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.21.3}reference equality}} semantics.
+        Numbers are compared using <<<Object.equals( Object )>>> semantics, which, in case of numbers, provides strict number identity comparison.
+
+    * <<isNotSameAs( target )>>
+
+        Checks if the input value is not the same as the specified value.
+
+    []
+
+* Number predicates
+
+    Number predicates work on all standard subclasses of <<<Number>>> class, including <<<BigInteger>>> and <<<BigDecimal>>>.
+
+    In addition to generic <<<isEqualTo( target )>>> and <<<isNotEqualTo( target )>>> predicates there are other
+    number relation predicates and predicates that check if the number belongs to some special class of numbers.
+
+** Number relation predicates
+
+    All number relation predicates use {{{http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.21.1}numerical equality}}
+    and {{{http://java.sun.com/docs/books/jls/third_edition/html/expressions.html#15.20.1}numerical comparison}} semantics.
+
+    * <<{isEqualTo}( target )>>
+
+        Checks if the input value is equal to the target value.
+
+    * <<{isNotEqualTo}( target )>>
+
+        Checks if the input value is not equal to the target value.
+
+    * <<isLessThan( target )>>
+
+        Checks if the input value is less than the target value.
+
+    * <<isLessThanOrEqualTo( target )>>
+
+        Checks if the input value is less than or equal to the target value.
+
+    * <<isGreaterThan( target )>>
+
+        Checks if the input value is greater than the target value.
+
+    * <<isGreaterThanOrEqualTo( target )>>
+
+        Checks if the input value is greater than or equal to the target value.
+
+    * <<isCloseTo( target )>>
+
+        Checks if the input value is close to the target value. Without specifying the closeness relation this predicate
+        will check for the strict equality between input and target values.
+
+        * <<isCloseTo( target ).byUlpDifference( tolerance )>>
+
+        Checks if the input value is close to the target value by the specified ulp difference.
+
+        * <<isCloseTo( target ).byAbsoluteDifference( tolerance )>>
+
+        Checks if the input value is close to the target value by the specified absolute difference:
+        <<<|input - target| <= tolerance>>> should be true.
+
+        * <<isCloseTo( target ).byRelativeDifference( tolerance )>>
+
+        Checks if the input value is close to the target value by the specified relative difference using relaxed condition:
+        either <<<|(input - target) / input| <= tolerance>>> or <<<|(input - target) / target| <= tolerance>>> should be true.
+
+        * <<isCloseTo( target ).byStrictRelativeDifference( tolerance )>>
+
+        Checks if the input value is close to the target value by the specified relative difference using strict condition:
+        both <<<|(input - target) / input| <= tolerance>>> and <<<|(input - target) / target| <= tolerance>>> must be true.
+
+        []
+
+    []
+
+** Number class predicates
+
+    * <<isZero()>>
+
+        Checks if the input value is zero.
+
+    * <<isPositive()>>
+
+        Checks if the input value is positive.
+
+    * <<isNegative()>>
+
+        Checks if the input value is negative.
+
+    * <<isNormal()>>
+
+        Checks if the input value is normal (not zero, subnormal, infinity or NaN).
+
+    * <<isSubnormal()>>
+
+        Checks if the input value is subnormal.
+
+    * <<isFinite()>>
+
+        Checks if the input value is finite (not infinity or NaN).
+
+    * <<isInfinite()>>
+
+        Checks if the input value is infinite.
+
+    * <<isNaN()>>
+
+        Checks if the input value is NaN.
+
+    []
+
+* Boolean predicates
+
+    * <<isTrue()>>
+
+        Checks if the input value is true.
+
+    * <<isFalse()>>
+
+        Checks if the input value is false.
+
+    []
+
+* String predicates
+
+    * <<contains( substring )>>
+
+        Checks if the input string contains the specified substring.
+
+    * <<startsWith( prefix )>>
+
+        Checks if the input string starts with the specified prefix.
+
+    * <<endsWith( suffix )>>
+
+        Checks if the input string ends with the specified suffix.
+
+    * <<matches( regex )>>
+
+        Checks if the input string matches the specified regular expression.
+
+    []
+
+* Collection predicates
+
+    * <<containsElementThat( condition )>>
+
+        Checks if the input collection contains an element than satisfies the specified condition.
+
+    []
