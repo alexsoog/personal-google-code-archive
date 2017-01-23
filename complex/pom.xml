@@ -4,7 +4,7 @@
 
     <groupId>com.google.code.complex</groupId>
     <artifactId>complex-numbers</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>Complex Numbers</name>
@@ -82,7 +82,7 @@
             <dependency>
                 <groupId>com.google.code.assertions</groupId>
                 <artifactId>assertions</artifactId>
-                <version>1.1-SNAPSHOT</version>
+                <version>1.1</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

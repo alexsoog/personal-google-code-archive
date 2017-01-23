@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.google.code.complex</groupId>
         <artifactId>complex-numbers</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <artifactId>complex-plotter</artifactId>
     <packaging>jar</packaging>
